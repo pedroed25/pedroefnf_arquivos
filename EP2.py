@@ -6,4 +6,3 @@ def define_posicoes(linha,coluna,orientacao,tamanho):
         elif orientacao=='horizontal':
             lista.append([linha,coluna+e])
     return lista
-print(define_posicoes(2,4,'vertical',3))
