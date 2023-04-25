@@ -35,5 +35,14 @@ def posiciona_frota(info_navios):
           for i in lista:
             tabuleiro[i[0]][i[1]]=1
     return tabuleiro
-
-
+def afundados(frota,tabuleiro):
+    x=0
+    for nome in frota.keys():
+        for lugares in frota[nome]:
+            y=0
+            for lugar in lugares:
+                if tabuleiro[lugar[0]][lugar[1]]=='X':
+                    y+=1
+            if y==len(lugares):
+                x+=1
+    return x 
