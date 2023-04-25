@@ -56,6 +56,5 @@ def posicao_valida (infos,linha,coluna,orientacao,tamanho):
                 for e in f:
                     if i[0] == e[0] and i[1] == e[1]:
                         return False
-                    
     return True
 
