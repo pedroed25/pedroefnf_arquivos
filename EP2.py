@@ -1,3 +1,4 @@
+import random
 def define_posicoes(linha,coluna,orientacao,tamanho):
     lista=[]
     for e in range (tamanho):
@@ -139,6 +140,7 @@ def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     return texto
 
 passadas=[]
+passadas_oponentes=[]
 
 while jogando:
     print(monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente))
@@ -162,8 +164,23 @@ while jogando:
     if afundado==10:
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
         jogando=False
-        
-    
-        
-
-
+    if afundado<10:
+        ok=True
+        coluna_oponente=random.randint(0,9)
+        linha_oponente=random.randint(0,9)
+        if [linha_oponente,coluna_oponente] not in passadas_oponentes:
+            passadas_oponentes.append([linha_oponente,coluna_oponente])
+            print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_oponente,coluna_oponente))
+        else:
+            while [linha_oponente,coluna_oponente] in passadas_oponentes:
+                coluna_oponente=random.randint(0,9)
+                linha_oponente=random.randint(0,9)
+            print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_oponente,coluna_oponente))
+            passadas_oponentes.append([linha_oponente,coluna_oponente])
+        jogada_oponente=faz_jogada(tabuleiro_jogador,linha_oponente,coluna_oponente)
+        afundado_oponente=afundados(frota_preenchida,tabuleiro_jogador)
+        if afundado_oponente==10:
+            print('Xi! O oponente derrubou toda a sua frota =(')
+            jogando=False
+            break
+            
